@@ -1,8 +1,11 @@
+import sys
+sys.stdout.reconfigure(encoding='utf-8')
 import pandas as pd
 import numpy as np
 from faker import Faker
 from datetime import datetime, timedelta
 import random
+import os
 
 fake = Faker()
 
@@ -19,6 +22,8 @@ REGIONS = {
     "ap-southeast-1": {"carbon_intensity_base": 450, "renewable_peak_hours": [13, 14]},
 }
 
+
+
 def generate_carbon_intensity(hour, region):
     """Simulate carbon intensity (gCO2/kWh) varying by hour and region."""
     base = REGIONS[region]["carbon_intensity_base"]
@@ -27,6 +32,14 @@ def generate_carbon_intensity(hour, region):
     reduction = 0.4 if hour in peak_hours else 0
     noise = np.random.normal(0, 20)
     return max(50, base * (1 - reduction) + noise)
+
+def generate_logs(days=30, records_per_day=500):
+    # Add these two lines at the very top of the function:
+    os.makedirs("data/raw", exist_ok=True)
+    os.makedirs("data/processed", exist_ok=True)
+    
+    records = []
+    start_date = datetime.now() - timedelta(days=days)
 
 def generate_logs(days=30, records_per_day=500):
     records = []

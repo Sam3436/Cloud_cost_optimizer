@@ -17,7 +17,7 @@ The project utilizes a modular "Closed-Loop" automation design to ensure scalabi
 - **`carbon_model.py`**: The calculation engine using PUE multipliers and live grid data.
 - **`scheduler.py`**: The decision engine identifying "Region-Shifting" opportunities.
 - **`app.py`**: A Streamlit-based executive dashboard for CSRD reporting.
-- **`run_pipeline.py`**: The master orchestrator for end-to-end execution.
+- **`live_carbon.py`**: The master orchestrator for end-to-end execution.
 
 ## 🛠️ Technology Stack
 | Layer | Technologies |
